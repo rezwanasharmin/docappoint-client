@@ -19,10 +19,7 @@ export default function Login() {
     router.push(from);
   };
 
-  // const google = async () => {
-  //   await signIn.social({ provider: "google", callbackURL: from });
-  // };
-
+ 
   const google = async () => {
   await signIn.social({
     provider: "google",
@@ -48,7 +45,7 @@ export default function Login() {
         <button className="btn btn-primary w-full" type="submit">Login</button>
       </form>
       <button onClick={google} className="btn btn-outline mt-3 w-full">Continue with Google</button>
-      <p className="mt-4 text-sm">Donot have an account? <Link href="/register" className="link">Register</Link></p>
+      <p className="mt-4 text-sm">Donot Have An Account? <Link href="/register" className="link">Register</Link></p>
     </section>
   );
 }
