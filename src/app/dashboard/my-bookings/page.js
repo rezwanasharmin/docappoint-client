@@ -35,7 +35,7 @@ export default function MyBookings() {
     }
   };
 
-  // ✅ Fixed: Direct dependency on session
+ 
   useEffect(() => {
     // load();
   }, [session?.user?.email]);
@@ -43,6 +43,7 @@ export default function MyBookings() {
   const del = async (id) => {
     try {
       const token = readJwt();
+
       await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
@@ -60,7 +61,7 @@ export default function MyBookings() {
       <h1 className="mb-4 text-2xl font-bold">My Bookings</h1>
 
       {items.length === 0 ? (
-        <p className="text-gray-500 py-8">No bookings found yet.</p>
+        <p className="text-gray-500 py-8">No Bookings Found Yet.</p>
       ) : (
         <div className="grid gap-4">
           {items.map((b) => (
@@ -102,7 +103,7 @@ export default function MyBookings() {
                 item._id === updatedBooking._id ? updatedBooking : item
               )
             );
-            load(); // Refresh list after update
+            load();
           }}
         />
       )}
