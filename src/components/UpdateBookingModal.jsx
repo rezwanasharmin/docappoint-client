@@ -36,7 +36,7 @@ export default function UpdateBookingModal({ booking, onClose, onSaved }) {
       if (res.ok) {
         const updated = await res.json();
         toast.success("Appointment updated successfully!");
-        onSaved(updated);   // এটি parent এ আপডেট করবে
+        onSaved(updated);   
         onClose();
       } else {
         const errorData = await res.json().catch(() => ({}));
@@ -91,17 +91,17 @@ export default function UpdateBookingModal({ booking, onClose, onSaved }) {
             {...register("appointmentDate", { required: true })} 
           />
 
-          {/* Time Slot - Doctor এর availability থেকে নেওয়া উচিত, কিন্তু booking এ নেই */}
+          
           <select className="select select-bordered w-full" {...register("appointmentTime", { required: true })}>
             <option value="">Select Time Slot</option>
-            {/* যদি booking এ availability থাকে তাহলে দেখাবে */}
+          
             {booking.availability?.map?.((time) => (
               <option key={time} value={time}>{time}</option>
             ))}
             {booking.doctorAvailability?.map?.((time) => (
               <option key={time} value={time}>{time}</option>
             ))}
-            {/* ফলব্যাক */}
+            
             {!booking.availability && !booking.doctorAvailability && (
               <option value={booking.appointmentTime}>{booking.appointmentTime}</option>
             )}
