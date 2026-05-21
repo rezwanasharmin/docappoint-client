@@ -15,11 +15,11 @@ export default function Footer() {
               <span>DocAppoint</span>
             </Link>
             <p className="text-blue-100/80 max-w-xs">
-              Connecting Patients with Trusted Doctors Across Dhaka. Your health, our priority.
+              Connecting Patients with Trusted Doctors Across Dhaka. Your health, Our Priority.
             </p>
           </div>
 
-          {/* Quick Links */}
+          
           <div>
             <h3 className="text-lg font-semibold mb-5 text-blue-300">Quick Links</h3>
             <ul className="space-y-3 text-blue-100">
