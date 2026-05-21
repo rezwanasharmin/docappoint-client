@@ -52,10 +52,10 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={20} className="text-blue-500" />
-                <span>+880 1711-234567</span>
+                <span>+880 1711-5647890</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin size={20} className="text-blue-400" />
+                <MapPin size={20} className="text-blue-500" />
                 <span>Mirpur, Dhaka, Bangladesh</span>
               </div>
             </div>
