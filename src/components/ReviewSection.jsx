@@ -54,7 +54,7 @@ export default function ReviewSection({ doctorId }) {
 
 useEffect(() => {
   if (doctorId) {
-    window.location.reload();  // ✅ doctorId পরিবর্তন হলে পেজ রিলোড হবে যাতে নতুন doctor এর review দেখায়
+    load() // ✅ doctorId পরিবর্তন হলে পেজ রিলোড হবে যাতে নতুন doctor এর review দেখায়
   }
 }, [doctorId, session?.user?.email]);  // ✅ এখানে session ও doctorId দেয়া হয়েছে
 

@@ -37,7 +37,7 @@ export default function MyBookings() {
 
  
   useEffect(() => {
-    // load();
+    load();
   }, [session?.user?.email]);
 
   const del = async (id) => {
