@@ -41,9 +41,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact & Social */}
+          
           <div>
-            <h3 className="text-lg font-semibold mb-5 text-blue-300">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-5 text-blue-400">Contact Us</h3>
             
             <div className="space-y-4 text-blue-100">
               <div className="flex items-center gap-3">
@@ -56,7 +56,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <MapPin size={20} className="text-blue-400" />
-                <span>Dhanmondi, Dhaka, Bangladesh</span>
+                <span>Mirpur, Dhaka, Bangladesh</span>
               </div>
             </div>
 
