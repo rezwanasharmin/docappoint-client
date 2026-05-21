@@ -1,65 +1,98 @@
-import Image from "next/image";
+import HeroSlider from "@/components/HeroSlider";
+import DoctorCard from "@/components/DoctorCard";
 
-export default function Home() {
+async function getTop() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/doctors/top`, { cache: "no-store" });
+  return res.json();
+}
+
+export const metadata = {
+  title: "Home",
+  description: "Find top-rated doctors and book appointments.",
+};
+
+export default async function Home() {
+  const top = await getTop();
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <HeroSlider />
+      <section className="container mx-auto py-16">
+        <h2 className="mb-8 text-center text-3xl font-bold">Top Rated Doctors</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {top.map((d) => <DoctorCard key={d._id} doctor={d} />)}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+      {/* How It Works Section - Blue Theme */}
+<section className="bg-gradient-to-b from-blue-50 to-white dark:from-base-200 py-20">
+  <div className="container mx-auto px-6">
+    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 dark:text-white">
+      How It Works
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-8">
+      {[
+        {
+          step: "01",
+          title: "Search",
+          desc: "Browse doctors by name, specialty, and location",
+          color: "from-blue-600 to-cyan-500"
+        },
+        {
+          step: "02",
+          title: "Book",
+          desc: "Pick a suitable time slot and confirm instantly",
+          color: "from-indigo-600 to-blue-600"
+        },
+        {
+          step: "03",
+          title: "Visit",
+          desc: "Visit the doctor and share your valuable review",
+          color: "from-sky-600 to-blue-500"
+        },
+      ].map((item, i) => (
+        <div
+          key={i}
+          className="group bg-white dark:bg-base-100 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-blue-100 hover:border-blue-300 relative overflow-hidden"
+        >
+          {/* Background Accent */}
+          <div className={`absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br ${item.color} opacity-10 group-hover:opacity-20 rounded-full transition-all duration-700`} />
+          
+          <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white text-4xl font-bold mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+            {item.step}
+          </div>
+          
+          <h3 className="text-3xl font-semibold mb-4 text-gray-800 dark:text-white">{item.title}</h3>
+          <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">{item.desc}</p>
         </div>
-      </main>
+      ))}
     </div>
+  </div>
+</section>
+
+{/* Specialties We Cover - Colorful Blue Theme */}
+<section className="py-20 bg-white dark:bg-base-100">
+  <div className="container mx-auto px-6">
+    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 dark:text-white">
+      Specialties We Cover
+    </h2>
+
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {[
+        "Cardiology", "Dermatology", "Pediatrics", "Neurology",
+        "Orthopedics", "ENT", "Dentistry", "Psychiatry",
+        "Gynecology", "Ophthalmology", "General Medicine", "Surgery"
+      ].map((specialty, i) => (
+        <div
+          key={i}
+          className="group bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-base-200 dark:to-base-300 hover:from-blue-600 hover:to-indigo-600 border border-blue-200 hover:border-transparent rounded-3xl p-8 text-center font-semibold text-xl transition-all duration-500 hover:scale-105 hover:text-white hover:shadow-2xl cursor-pointer flex items-center justify-center min-h-[140px]"
+        >
+          {specialty}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+    </>
   );
 }
+
