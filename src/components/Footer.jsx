@@ -47,11 +47,11 @@ export default function Footer() {
             
             <div className="space-y-4 text-blue-100">
               <div className="flex items-center gap-3">
-                <Mail size={20} className="text-blue-400" />
+                <Mail size={20} className="text-blue-500" />
                 <span>support@docappoint.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone size={20} className="text-blue-400" />
+                <Phone size={20} className="text-blue-500" />
                 <span>+880 1711-234567</span>
               </div>
               <div className="flex items-center gap-3">

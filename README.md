@@ -1,6 +1,6 @@
 # DocAppoint — Doctor Appointment Manager
 
-Live site: **https://docappoint.vercel.app**
+
 
 DocAppoint is a full-stack doctor appointment booking platform built with Next.js, MongoDB, and Better Auth.
 
