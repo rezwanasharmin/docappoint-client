@@ -15,7 +15,7 @@ export default function Footer() {
               <span>DocAppoint</span>
             </Link>
             <p className="text-blue-100/80 max-w-xs">
-              Connecting patients with trusted doctors across Dhaka. Your health, our priority.
+              Connecting Patients with Trusted Doctors Across Dhaka. Your health, our priority.
             </p>
           </div>
 
