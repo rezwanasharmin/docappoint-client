@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <header className="border-b bg-base-100">
       <nav className="container mx-auto flex items-center justify-between p-4">
-        <Link href="/" className="flex text-blue-900 items-center gap-2 text-xl font-bold">
+        <Link href="/" className="flex text-blue-800 items-center gap-2 text-xl font-bold">
           <span className="text-primary">⚕</span> DocAppoint
         </Link>
         <div className="hidden gap-6 md:flex">
