@@ -60,7 +60,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Icons */}
+            
             <div className="mt-8">
               <h4 className="text-blue-300 mb-4">Follow Us</h4>
               <div className="flex gap-4">
@@ -74,7 +74,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      
       <div className="border-t border-blue-800 bg-black/30 py-6 text-center text-sm text-blue-200">
         © {new Date().getFullYear()} DocAppoint. All Rights Reserved. 
         <span className="mx-2">•</span>
