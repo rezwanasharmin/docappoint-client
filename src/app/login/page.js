@@ -44,7 +44,7 @@ export default function Login() {
         <input type="password" className="input input-bordered w-full" placeholder="Password" {...register("password", { required: true })} />
         <button className="btn btn-primary w-full" type="submit">Login</button>
       </form>
-      <button onClick={google} className="btn btn-outline mt-3 w-full">Continue with Google</button>
+      <button onClick={google} className="btn btn-outline mt-3 w-full">Continue With Google</button>
       <p className="mt-4 text-sm">Donot Have An Account? <Link href="/register" className="link">Register</Link></p>
     </section>
   );

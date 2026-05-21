@@ -9,8 +9,8 @@ export default function Navbar() {
   const { data: session } = useSession();
   const user = session?.user;
   if (typeof window !== "undefined" && user?.email) {
-  localStorage.setItem("better-auth-email", user.email);
-}
+    localStorage.setItem("better-auth-email", user.email);
+  }
 
   const handleLogout = async () => {
     await signOut();
@@ -32,14 +32,14 @@ export default function Navbar() {
           <ThemeToggle />
           {user ? (
             <>
-     <Image
-  src={user?.image || "/avatar.png"}
-  alt=""
-  width={36}
-  height={36}
-  style={{ height: "auto", width: "auto" }}
-  className="rounded-full"
-/>
+              <Image
+                src={user?.image || "/avatar.png"}
+                alt=""
+                width={36}
+                height={36}
+                style={{ height: "auto", width: "auto" }}
+                className="rounded-full"
+              />
               <button onClick={handleLogout} className="btn btn-sm btn-outline">Logout</button>
             </>
           ) : (
