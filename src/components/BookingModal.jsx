@@ -2,23 +2,41 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useSession } from "@/lib/auth-client";
-import { readJwt } from "@/lib/jwt";
+
 
 export default function BookingModal({ doctor, onClose }) {
   const { data: session } = useSession();
   const { register, handleSubmit, reset } = useForm();
-
   const onSubmit = async (data) => {
-    const payload = { ...data, userEmail: session.user.email, doctorName: doctor.name, doctorId: doctor._id };
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appointments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${readJwt()}` },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) { toast.success("Appointment booked successfully!"); reset(); onClose(); }
-    else toast.error("Booking failed. Try again.");
-  };
+    
 
+    const payload = {
+      ...data,
+      userEmail: session.user.email,
+      doctorName: doctor.name,
+      doctorId: doctor._id,
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/book/appointment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+      if (res.ok) {
+        toast.success("Appointment booked successfully!");
+        reset();
+        onClose();
+      } else toast.error("Booking failed. Try again.");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="modal modal-open">
       <div className="modal-box">

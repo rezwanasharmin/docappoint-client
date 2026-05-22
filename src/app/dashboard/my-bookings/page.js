@@ -9,36 +9,18 @@ export default function MyBookings() {
   const { data: session } = useSession();
   const [items, setItems] = useState([]);
   const [editing, setEditing] = useState(null);
+  const [refectch, setRefatch] = useState(false);
 
-  const load = async () => {
-    if (!session?.user?.email) return;
-
-    const token = readJwt();
-    if (!token) return;
-
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/appointments?email=${session.user.email}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      if (res.ok) {
-        const data = await res.json();
-        setItems(data);
-      } else {
-        console.error("Failed to load bookings - Status:", res.status);
-      }
-    } catch (err) {
-      console.error("Error fetching bookings:", err);
-    }
-  };
-
- 
   useEffect(() => {
-    load();
-  }, [session?.user?.email]);
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/appointment/my-booking?email=${session?.user?.email}`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        setRefatch(false);
+      });
+  }, [session?.user?.email, refectch]);
 
   const del = async (id) => {
     try {
@@ -52,9 +34,12 @@ export default function MyBookings() {
       setItems((p) => p.filter((x) => x._id !== id));
       toast.success("Appointment deleted successfully!");
     } catch (err) {
+      console.log(err);
+
       toast.error("Failed to delete appointment");
     }
   };
+  console.log(items);
 
   return (
     <>
@@ -100,10 +85,10 @@ export default function MyBookings() {
           onSaved={(updatedBooking) => {
             setItems((prev) =>
               prev.map((item) =>
-                item._id === updatedBooking._id ? updatedBooking : item
-              )
+                item._id === updatedBooking._id ? updatedBooking : item,
+              ),
             );
-            load();
+            setRefatch(true);
           }}
         />
       )}
