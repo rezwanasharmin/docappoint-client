@@ -11,11 +11,11 @@ export default function Footer() {
           {/* Logo & About */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3 text-3xl font-bold">
-              <span className="text-blue-400 text-4xl">⚕</span>
+              <span className="text-blue-500 text-4xl">⚕</span>
               <span>DocAppoint</span>
             </Link>
             <p className="text-blue-100/80 max-w-xs">
-              Connecting Patients with Trusted Doctors Across Dhaka. Your health, Our Priority.
+              Connecting Patients with Trusted Doctors Across DHAka. Your health, Our Priority.
             </p>
           </div>
 
